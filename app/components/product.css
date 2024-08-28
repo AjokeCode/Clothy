@@ -1,0 +1,7 @@
+.imageurl {
+  position: relative;
+  height: 32rem;
+  width: 100%;
+  background-image: url(./image\ 327.png);
+  background-size: cover;
+}
