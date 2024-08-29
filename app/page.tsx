@@ -1,9 +1,7 @@
 "use client";
 
-import Header from "./components/header/header";
-import Hero from "./components/hero";
-import Product from "./components/products";
 import { useEffect } from "react";
+import Home from "./home";
 
 export default function Index() {
   useEffect(() => {
@@ -12,9 +10,7 @@ export default function Index() {
   return (
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     <>
-      <Header />
-      <Hero />
-      <Product />
+      <Home />
     </>
     // </main>
   );

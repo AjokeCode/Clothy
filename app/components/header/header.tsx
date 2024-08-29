@@ -57,19 +57,22 @@ const Header = () => {
           <BsListNested
             className={`${
               isClick ? "hidden" : ""
-            } text-red-400 md:hidden block text-4xl cursor-pointer`}
+            } md:hidden block text-4xl cursor-pointer`}
             onClick={() => setIsClick(true)}
+            style={{ color: "rgba(60, 66, 66, 1)" }}
           />
         ) : (
           <nav
             className="fixed inset-0 flex flex-col items-center justify-center h-screen z-[1500]"
             style={{
-              backgroundColor: "#111827",
+              backgroundColor: "#ffffff",
+              color: "rgba(13, 12, 34, 1)",
             }}
           >
             <AiOutlineClose
-              className="text-red-400 text-2xl absolute top-4 right-12 cursor-pointer"
+              className="text-2xl absolute top-4 right-12 cursor-pointer"
               onClick={() => setIsClick(false)}
+              style={{ color: "rgba(60, 66, 66, 1)" }}
             />
             <ul className="space-y-8 text-center" style={{ color: "#807D7E" }}>
               <li>

@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import img1 from "./product_images/img1.svg";
-import img2 from "./product_images/img2.svg";
+import img2 from "./product_images/Frame 548.svg";
 import img3 from "./product_images/img3.svg";
 import img4 from "./product_images/img4.svg";
 import img5 from "./product_images/img5.svg";
 import img6 from "./product_images/img6.svg";
-import img7 from "./product_images/img7.svg";
+import img7 from "./product_images/Frame 548.svg";
 import img8 from "./product_images/img9.svg";
 import img9 from "./product_images/img9.svg";
 import img10 from "./product_images/img10.svg";
@@ -23,6 +23,7 @@ interface Product {
   title: string;
   description: string;
   price: string;
+  id: number;
   category: "Men" | "Women"; // Add category to products
 }
 
@@ -42,6 +43,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Women's T-Shirt",
           description: "Comfortable women's t-shirt",
           price: "$25",
+          id: 1,
           category: "Women",
         },
         {
@@ -49,6 +51,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Hoodie",
           description: "Stylish men's hoodie",
           price: "$45",
+          id: 2,
           category: "Men",
         },
         {
@@ -56,6 +59,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Women's Jeans",
           description: "Trendy women's jeans",
           price: "$60",
+          id: 3,
           category: "Women",
         },
         {
@@ -63,6 +67,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 4,
           category: "Men",
         },
         {
@@ -70,6 +75,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 5,
           category: "Men",
         },
         {
@@ -77,6 +83,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 6,
           category: "Men",
         },
         {
@@ -84,6 +91,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 7,
           category: "Men",
         },
         {
@@ -91,6 +99,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 8,
           category: "Men",
         },
         {
@@ -98,6 +107,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 9,
           category: "Men",
         },
         {
@@ -105,6 +115,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 10,
           category: "Men",
         },
         {
@@ -112,6 +123,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 11,
           category: "Men",
         },
         {
@@ -119,6 +131,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 12,
           category: "Men",
         },
         {
@@ -126,6 +139,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 13,
           category: "Men",
         },
         {
@@ -133,6 +147,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 14,
           category: "Men",
         },
         {
@@ -140,6 +155,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 15,
           category: "Men",
         },
         {
@@ -147,6 +163,7 @@ export const useProductStore = create<ProductStore>()(
           title: "Men's Sneakers",
           description: "Cool men's sneakers",
           price: "$70",
+          id: 15,
           category: "Men",
         },
       ],
