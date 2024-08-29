@@ -1,28 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { useCart } from "react-use-cart";
 import { useProductStore } from "./productstore";
 import Image from "next/image";
-import img1 from "./image 327 (1).svg";
 
 const Product: React.FC = () => {
+  const { addItem } = useCart();
+  const [inCart, setInCart] = useState([]);
   const { products, category, setCategory } = useProductStore((state) => ({
     products: state.products,
     category: state.category,
     setCategory: state.setCategory,
   }));
-
-  // Filter products based on the selected category
   const filteredProducts =
     category === "All"
       ? products
       : products.filter((product) => product.category === category);
+  // const add = (e:) => {
+  //   addItem(e);
+  //   setInCart((prev) => [...prev, e.id]);
+  // };
 
   return (
-    <div className="flex flex-col items-center justify-center">
-      <div className="w-11/12 bg-white rounded-t-3xl flex flex-col self-center">
-        {/* Category Filters */}
-        <div className="flex space-x-4 p-4" style={{ color: "#807D7E" }}>
+    <div className="flex flex-col items-center justify-center relative -mt-24 z-10">
+      <div className="w-11/12 bg-white drop-shadow-lg rounded-t-3xl flex flex-col self-center">
+        <div
+          className="flex space-x-4 p-4 max-w-14 rounded-3xl"
+          style={{ color: "#807D7E", backgroundColor: "blue" }}
+        >
           <button onClick={() => setCategory("All")} className="">
             All
           </button>
@@ -33,8 +39,6 @@ const Product: React.FC = () => {
             Men
           </button>
         </div>
-
-        {/* Display Filtered Products */}
         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {filteredProducts.map((product, index) => (
             <div key={index} className="">
