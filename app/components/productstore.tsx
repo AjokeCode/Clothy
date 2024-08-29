@@ -10,6 +10,12 @@ import img7 from "./product_images/img7.svg";
 import img8 from "./product_images/img9.svg";
 import img9 from "./product_images/img9.svg";
 import img10 from "./product_images/img10.svg";
+import img11 from "./product_images/img11.svg";
+import img12 from "./product_images/img12.svg";
+import img13 from "./product_images/img13.svg";
+import img14 from "./product_images/img14.svg";
+import img15 from "./product_images/img15.svg";
+import img16 from "./product_images/img16.svg";
 
 // Define the Product type
 interface Product {
