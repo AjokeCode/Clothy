@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Home from "./home";
+import { CartProvider } from "react-use-cart";
 
 export default function Index() {
   useEffect(() => {
@@ -10,7 +11,9 @@ export default function Index() {
   return (
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     <>
-      <Home />
+      <CartProvider>
+        <Home />
+      </CartProvider>
     </>
     // </main>
   );

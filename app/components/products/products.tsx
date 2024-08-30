@@ -1,26 +1,34 @@
 "use client";
 
 import React, { useState } from "react";
-import { useCart } from "react-use-cart";
-import { useProductStore } from "./productstore";
+import { CartProvider, useCart } from "react-use-cart";
+import { useProductStore, Products } from "./productstore";
 import Image from "next/image";
+import Link from "next/link";
 
 const Product: React.FC = () => {
-  const { addItem, items, updateItemQuantity } = useCart();
-  const [inCart, setInCart] = useState([]);
+  const { addItem } = useCart();
+  console.log(addItem);
+  const { items, updateItemQuantity } = useCart();
+  const [inCart, setInCart] = useState<string[]>([]);
   const { products, category, setCategory } = useProductStore((state) => ({
     products: state.products,
     category: state.category,
     setCategory: state.setCategory,
   }));
+
   const filteredProducts =
     category === "All"
       ? products
       : products.filter((product) => product.category === category);
 
-  const add = (e) => {
-    addItem(e);
-    setInCart((prev) => [...prev, e.id]);
+  const add = (product: Products) => {
+    addItem({
+      id: product.id,
+      price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")),
+    });
+    setInCart((prev) => [...prev, product.id]);
+    console.log(product.id);
   };
 
   return (
@@ -34,29 +42,23 @@ const Product: React.FC = () => {
             backgroundColor: "rgba(250, 250, 250, 1)",
           }}
         >
-          <button onClick={() => setCategory("All")} className="">
-            All
-          </button>
-          <button onClick={() => setCategory("Women")} className="">
-            Women
-          </button>
-          <button onClick={() => setCategory("Men")} className="">
-            Men
-          </button>
+          <button onClick={() => setCategory("All")}>All</button>
+          <button onClick={() => setCategory("Women")}>Women</button>
+          <button onClick={() => setCategory("Men")}>Men</button>
         </div>
         <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {filteredProducts.map((product, index) => {
-            const itemInCart = items.find(
-              (item) => item.id === filteredProducts.id
-            );
+            const itemInCart = items.find((item) => item.id === product.id);
             return (
               <div key={index} className="mb-6">
-                <Image
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-auto"
-                />
-                <div className="flex justify-between">
+                <Link href={`/product/${product.id}`}>
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-auto cursor-pointer"
+                  />
+                </Link>
+                <div className="flex justify-between mb-4">
                   <div className="flex flex-col gap-4">
                     <h2 className="mt-2 text-base font-medium">
                       {product.title}
@@ -67,29 +69,27 @@ const Product: React.FC = () => {
                     className="font-bold text-2xl"
                     style={{ color: "rgba(13, 12, 34, 1)" }}
                   >
-                    {product.price}
+                    ${product.price}
                   </p>
                 </div>
 
                 {itemInCart ? (
                   <div>
                     <button
-                      className=""
                       onClick={() =>
                         updateItemQuantity(
                           itemInCart.id,
-                          itemInCart.quantity + 1
+                          (itemInCart.quantity || 0) + 1
                         )
                       }
                     >
                       +
                     </button>
                     <button
-                      className="product-btn"
                       onClick={() =>
                         updateItemQuantity(
                           itemInCart.id,
-                          itemInCart.quantity - 1
+                          (itemInCart.quantity || 0) - 1
                         )
                       }
                     >
@@ -97,9 +97,27 @@ const Product: React.FC = () => {
                     </button>
                   </div>
                 ) : (
-                  <button className="product-btn" onClick={() => add(product)}>
-                    Add to cart
-                  </button>
+                  <div className="flex justify-between text-sm font-medium">
+                    <button
+                      className="w-28 h-10 rounded-3xl"
+                      onClick={() => add(product)}
+                      style={{
+                        backgroundColor: "rgba(128, 125, 126, 0.2)",
+                        color: "rgba(13, 12, 34, 1)",
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                    <button
+                      className="w-28 h-10 text-white rounded-3xl"
+                      onClick={() => add(product)}
+                      style={{
+                        backgroundColor: "rgba(13, 12, 34, 1)",
+                      }}
+                    >
+                      Buy now
+                    </button>
+                  </div>
                 )}
               </div>
             );
@@ -109,5 +127,4 @@ const Product: React.FC = () => {
     </div>
   );
 };
-
 export default Product;

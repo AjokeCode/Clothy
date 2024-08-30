@@ -1,4 +1,4 @@
-import "./product.css";
+import "../components/products/product.css";
 
 const Hero = () => {
   return (

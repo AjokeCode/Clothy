@@ -1,14 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { BsListNested } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import img1 from "./Logo (1).svg";
 import img2 from "./Icon.svg";
+import { useCart } from "react-use-cart";
 
 const Header = () => {
+  const { totalUniqueItems } = useCart();
   const [isClick, setIsClick] = useState(false);
   return (
     <>
@@ -40,6 +42,7 @@ const Header = () => {
         <ul className="md:flex hidden justify-between text-sm font-normal items-center">
           <input type="search" placeholder="search" />
           <Image src={img2} alt="img" />
+          <p className="-ml-2 -mt-4">{totalUniqueItems}</p>
         </ul>
       </div>
 
