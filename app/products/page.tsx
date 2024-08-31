@@ -5,6 +5,7 @@ import { CartProvider, useCart } from "react-use-cart";
 import { useProductStore, Products } from "./productstore";
 import Image from "next/image";
 import Link from "next/link";
+import img1 from "./Frame 1000003961.svg";
 
 const Product: React.FC = () => {
   const { addItem } = useCart();
@@ -51,7 +52,7 @@ const Product: React.FC = () => {
             const itemInCart = items.find((item) => item.id === product.id);
             return (
               <div key={index} className="mb-6">
-                <Link href={`/product/${product.id}`}>
+                <Link href={`/products/${encodeURIComponent(product.id)}`}>
                   <Image
                     src={product.image}
                     alt={product.title}
@@ -63,7 +64,7 @@ const Product: React.FC = () => {
                     <h2 className="mt-2 text-base font-medium">
                       {product.title}
                     </h2>
-                    <p className="text-sm font-normal">{product.description}</p>
+                    <Image src={img1} alt="img star" />
                   </div>
                   <p
                     className="font-bold text-2xl"

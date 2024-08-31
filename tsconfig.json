@@ -28,7 +28,8 @@
     ".next/types/**/*.ts",
     "app/src/home.jsx",
     "app/home.jsx",
-    "app/**/*"
+    "app/**/*",
+    "app/products/...id.tsx"
   ],
 
   "exclude": ["node_modules"]

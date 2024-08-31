@@ -1,7 +1,7 @@
 import Footer from "./components/footer";
 import Header from "./components/header/header";
 import Hero from "./components/hero";
-import Product from "./components/products/products";
+import Product from "./products/page";
 
 const Home = () => {
   return (
