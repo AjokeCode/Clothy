@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <div
@@ -6,13 +8,10 @@ const Footer = () => {
     >
       <div className="flex justify-between">
         <div className="flex md:flex-row flex-col justify-between gap-4 md:gap-8">
-          <h1>Events</h1>
-          <h1>Blogs</h1>
-          <h1>Contact us</h1>
+          <Link href={"/"}>Home</Link>
+          <Link href={"/cart"}>Cart</Link>
         </div>
         <div className="flex md:flex-row flex-col justify-between gap-4 md:gap-8">
-          <h1>Events</h1>
-          <h1>Blogs</h1>
           <h1>Contact us</h1>
         </div>
       </div>
