@@ -7,7 +7,7 @@ import Image from "next/image";
 import Header from "@/app/components/header/header";
 import Footer from "@/app/components/footer";
 import img1 from "../Frame 1000003962.svg";
-import { useCart } from "react-use-cart";
+import { useCart, CartProvider } from "react-use-cart";
 import SizeButton from "@/app/components/sizebtn";
 import ReviewComponent from "@/app/components/review/review";
 const ProductDetail: React.FC = () => {
@@ -45,7 +45,7 @@ const ProductDetail: React.FC = () => {
   if (!product) return <div>Product not found</div>;
 
   return (
-    <>
+    <CartProvider>
       <Header />
       <div className="md:px-16 md:py-12 py-6 px-8 font-semibold">
         <h1
@@ -93,7 +93,7 @@ const ProductDetail: React.FC = () => {
             </div>
             <div className="pt-6">
               <button
-                onClick={handleAddToCart}
+                onClick={() => handleAddToCart}
                 className="w-72 h-10 rounded-3xl"
                 style={{
                   backgroundColor: "rgba(128, 125, 126, 0.2)",
@@ -108,7 +108,7 @@ const ProductDetail: React.FC = () => {
       </div>
       <ReviewComponent />
       <Footer />
-    </>
+    </CartProvider>
   );
 };
 

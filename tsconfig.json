@@ -29,7 +29,8 @@
     "app/src/home.jsx",
     "app/home.jsx",
     "app/**/*",
-    "app/products/...id.tsx"
+    "app/products/...id.tsx",
+    "app/cart/page.tsx"
   ],
 
   "exclude": ["node_modules"]

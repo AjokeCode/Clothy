@@ -7,13 +7,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import Image from "next/image";
 import img1 from "./Logo (1).svg";
 import img2 from "./Icon.svg";
-import { useCart } from "react-use-cart";
+import { useCart, CartProvider } from "react-use-cart";
 
 const Header = () => {
   const { totalUniqueItems } = useCart();
   const [isClick, setIsClick] = useState(false);
   return (
-    <>
+    <CartProvider>
       <div
         className="md:flex hidden justify-between items-center md:h-20 h-16 w-full md:px-16 px-8 z-50 sticky"
         style={{
@@ -30,20 +30,18 @@ const Header = () => {
             <Link href={"/"}>Home</Link>
           </li>
           <li className="ml-6">
-            <Link href={"/product"}>Shop</Link>
-          </li>
-          <li className="ml-6">
-            <Link href={"/about"}>About</Link>
-          </li>
-          <li className="ml-6">
-            <Link href={"/contact"}>Contact us</Link>
+            <Link href={"/cart"}>Cart</Link>
           </li>
         </ul>
-        <ul className="md:flex hidden justify-between text-sm font-normal items-center">
-          <input type="search" placeholder="search" />
+        <Link
+          href={"/cart"}
+          className="md:flex hidden justify-between text-sm font-normal items-center cursor-pointer"
+        >
           <Image src={img2} alt="img" />
-          <p className="-ml-2 -mt-4">{totalUniqueItems}</p>
-        </ul>
+          <p className="-ml-2 -mt-4 text-xs font-semibold h-5 w-5 text-center bg-pink-400 text-white rounded-full">
+            {totalUniqueItems}
+          </p>
+        </Link>
       </div>
 
       {/* mobile */}
@@ -82,22 +80,13 @@ const Header = () => {
                 <Link href={"/"}>Home</Link>
               </li>
               <li className="ml-6">
-                <Link href={"/product"}>Shop</Link>
-              </li>
-              <li className="ml-6">
-                <Link href={"/about"}>About</Link>
-              </li>
-              <li className="ml-6">
-                <Link href={"/contact"}>Contact us</Link>
-              </li>
-              <li className="ml-6">
-                <Link href={"/catalog"}>Catalog</Link>
+                <Link href={"/cart"}>Cart</Link>
               </li>
             </ul>
           </nav>
         )}
       </div>
-    </>
+    </CartProvider>
   );
 };
 export default Header;
