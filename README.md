@@ -70,4 +70,5 @@ To get started with Clothy, follow these steps:
      npm run dev
 5.  ****Open your browser and visit:**
      http://localhost:3000  
->>>>>>> d4d91773986d50efb45cde1e25ee43267badfbcc
+##Navigation
+It has home page where it display products available, you can click on the images the get the detail of the product chose, you can add to cart, edit the quantity of the product, remove from cart and there is also cart page where all the product added to cart is, you can also clear the cart.
