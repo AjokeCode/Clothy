@@ -2,20 +2,25 @@
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
+import { useCartStore, CartItem } from "@/app/components/usecartstore";
 import { useProductStore } from "../productstore";
 import Image from "next/image";
 import Header from "@/app/components/header/header";
 import Footer from "@/app/components/footer";
 import img1 from "../Frame 1000003962.svg";
-import { useCart, CartProvider } from "react-use-cart";
 import SizeButton from "@/app/components/sizebtn";
+import CartButtons from "@/app/components/cartbtn";
 import ReviewComponent from "@/app/components/review/review";
+
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
+  const { addItem, cart } = useCartStore((state) => ({
+    addItem: state.addItem,
+    cart: state.cart,
+  }));
   const { products } = useProductStore((state) => ({
     products: state.products,
   }));
-  const { addItem } = useCart();
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
 
   const handleClick = (index: number) => {
@@ -26,10 +31,14 @@ const ProductDetail: React.FC = () => {
     if (id && selectedButton !== null) {
       const product = products.find((p) => p.id === id);
       if (product) {
-        addItem({
+        const item: CartItem = {
           id: product.id,
-          price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")),
-        });
+          title: product.title,
+          price: product.price.replace(/[^0-9.-]+/g, ""), // Ensuring price is a number
+          quantity: 1,
+          image: product.image,
+        };
+        addItem(item);
       }
     }
   };
@@ -44,8 +53,11 @@ const ProductDetail: React.FC = () => {
 
   if (!product) return <div>Product not found</div>;
 
+  // Determine if the product is already in the cart
+  const itemInCart = cart.find((item) => item.id === product.id);
+
   return (
-    <CartProvider>
+    <>
       <Header />
       <div className="md:px-16 md:py-12 py-6 px-8 font-semibold">
         <h1
@@ -92,23 +104,23 @@ const ProductDetail: React.FC = () => {
               </div>
             </div>
             <div className="pt-6">
-              <button
-                onClick={() => handleAddToCart}
-                className="w-72 h-10 rounded-3xl"
-                style={{
-                  backgroundColor: "rgba(128, 125, 126, 0.2)",
-                  color: "rgba(13, 12, 34, 1)",
+              <CartButtons
+                productId={product.id}
+                itemInCart={itemInCart}
+                product={{
+                  id: product.id,
+                  price: product.price,
+                  title: product.title,
+                  image: product.image,
                 }}
-              >
-                Add to Cart
-              </button>
+              />
             </div>
           </div>
         </div>
       </div>
       <ReviewComponent />
       <Footer />
-    </CartProvider>
+    </>
   );
 };
 
