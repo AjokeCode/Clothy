@@ -14,8 +14,7 @@ import ReviewComponent from "@/app/components/review/review";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams();
-  const { addItem, cart } = useCartStore((state) => ({
-    addItem: state.addItem,
+  const { cart } = useCartStore((state) => ({
     cart: state.cart,
   }));
   const { products } = useProductStore((state) => ({
@@ -25,22 +24,6 @@ const ProductDetail: React.FC = () => {
 
   const handleClick = (index: number) => {
     setSelectedButton(index);
-  };
-
-  const handleAddToCart = () => {
-    if (id && selectedButton !== null) {
-      const product = products.find((p) => p.id === id);
-      if (product) {
-        const item: CartItem = {
-          id: product.id,
-          title: product.title,
-          price: product.price.replace(/[^0-9.-]+/g, ""), // Ensuring price is a number
-          quantity: 1,
-          image: product.image,
-        };
-        addItem(item);
-      }
-    }
   };
 
   const size = ["XXL", "XL", "XS"];
@@ -53,7 +36,6 @@ const ProductDetail: React.FC = () => {
 
   if (!product) return <div>Product not found</div>;
 
-  // Determine if the product is already in the cart
   const itemInCart = cart.find((item) => item.id === product.id);
 
   return (

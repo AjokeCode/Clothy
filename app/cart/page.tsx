@@ -30,14 +30,14 @@ const Cart: React.FC = () => {
         {cart.map((item, index) => {
           return (
             <div
-              className="flex justify-between mb-4 border w-full md:h-48 h-32 rounded-xl md:px-6 px-2 py-4"
+              className="flex justify-between mb-4 border w-full md:h-48 h-32 rounded-xl md:px-6 px-2"
               key={index}
               style={{ borderColor: "rgba(128, 125, 126, 0.06)" }}
             >
               <Image
                 src={item.image}
                 alt={item.title}
-                className="object-cover md:h-44 h-24 w-1/4"
+                className="object-cover md:h-44 h-24 w-1/4 rounded"
               />
               <div className=" flex flex-col justify-between">
                 <h1 className="">{item.title}</h1>
